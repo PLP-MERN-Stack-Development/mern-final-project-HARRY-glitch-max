@@ -1,52 +1,108 @@
-# MERN Stack Capstone Project
+JobConnect – MERN Stack Job Portal
+JobConnect is a full-stack job portal built with the MERN stack (MongoDB, Express.js, React, Node.js). It allows users to register, log in, browse jobs, apply for positions, and manage their profiles. Employers can post and manage job listings.
 
-This assignment focuses on designing, developing, and deploying a comprehensive full-stack MERN application that showcases all the skills you've learned throughout the course.
+🚀 Features
+- 🔐 JWT-based authentication
+- 👤 Role-based access (Jobseeker vs Employer)
+- 📄 Resume upload (Multer)
+- 📋 Job listing and application tracking
+- 🔧 RESTful API with Express
+- ⚛️ React frontend with protected routes
+- 🌐 Deployed backend (Render) and frontend (Vercel)
 
-## Assignment Overview
+🧱 Project Structure
+project-root/
+├── backend/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── utils/
+│   └── server.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   └── .env
 
-You will:
-1. Plan and design a full-stack MERN application
-2. Develop a robust backend with MongoDB, Express.js, and Node.js
-3. Create an interactive frontend with React.js
-4. Implement testing across the entire application
-5. Deploy the application to production
 
-## Getting Started
 
-1. Accept the GitHub Classroom assignment
-2. Clone the repository to your local machine
-3. Follow the instructions in the `Week8-Assignment.md` file
-4. Plan, develop, and deploy your capstone project
+⚙️ Installation
+1. Clone the repo
+git clone https://github.com/HARRY-glitch-max/PROJECT-1.git
+cd jobconnect
 
-## Files Included
 
-- `Week8-Assignment.md`: Detailed assignment instructions
+2. Backend Setup
+cd backend
+npm install
 
-## Requirements
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- npm or yarn
-- Git and GitHub account
-- Accounts on deployment platforms (Render/Vercel/Netlify/etc.)
+Create .env:
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
 
-## Project Ideas
 
-The `Week8-Assignment.md` file includes several project ideas, but you're encouraged to develop your own idea that demonstrates your skills and interests.
+3. Frontend Setup
+cd frontend
+npm install
 
-## Submission
 
-Your project will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+Create frontend/.env:
+VITE_API_URL=http://localhost:5000/api
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_anVzdC1yb29zdGVyLTcwLmNsZXJrLmFjY291bnRzLmRldiQ
 
-1. Commit and push your code regularly
-2. Include comprehensive documentation
-3. Deploy your application and add the live URL to your README.md
-4. Create a video demonstration and include the link in your README.md
 
-## Resources
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [Express.js Documentation](https://expressjs.com/)
-- [React Documentation](https://react.dev/)
-- [Node.js Documentation](https://nodejs.org/en/docs/)
-- [GitHub Classroom Guide](https://docs.github.com/en/education/manage-coursework-with-github-classroom) 
+🧪 Running Locally
+Backend
+npm run dev
+
+
+Frontend
+npm run dev
+
+
+
+🔐 Authentication Flow
+- Users register/login via /users/register and /users/login
+- JWT token is returned and stored in localStorage
+- Protected routes use ProtectedRoute.jsx to guard access
+- Backend uses authMiddleware.js to verify tokens
+
+📦 API Endpoints
+Auth
+- POST /users/register
+- POST /users/login
+- GET /users/profile (protected)
+Jobs
+- GET /jobs
+- GET /jobs/:id
+- POST /jobs (employer only)
+- PUT /jobs/:id
+- DELETE /jobs/:id
+Applications
+- POST /applications/:jobId
+- GET /applications (user-specific)
+
+🧠 How It Works
+- Frontend uses Axios to call backend APIs, attaching JWT tokens automatically
+- Backend uses Express routes and Mongoose models to handle data
+- ProtectedRoute.jsx ensures only logged-in users access sensitive pages
+- Navbar.jsx dynamically shows links based on login state
+- JobCard.jsx displays job listings fetched from the backend
+
+🚀 Deployment
+- Backend deployed to Render
+- Frontend deployed to Vercel
+- Environment variables configured in both platforms
+
+🧪 Testing & Debugging
+- Use Postman or frontend to test endpoints
+- Console logs and error handling are built into controllers
+- JWT errors return 401 with descriptive messages
+
